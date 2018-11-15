@@ -1,6 +1,6 @@
 {
-  "name": "giants-seo-boilerplate",
-  "version": "0.0.1",
+  "name": "giants-universal-boilerplate",
+  "version": "1.0.0",
   "dependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
