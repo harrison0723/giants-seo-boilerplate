@@ -1,2 +1,5 @@
 runtime: nodejs10
 env: standard
+instance_class: F2
+env_variables:
+  BABEL_DISABLE_CACHE: 1
