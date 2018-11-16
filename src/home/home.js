@@ -6,7 +6,7 @@ import Auth from '../auth/auth'
 export class Home extends Component {
     render() {
         return (
-            <div className="home">
+            <div className="ssr home">
                 <h1>Hallo Welt!</h1>
                 <Auth />
             </div>

@@ -16,6 +16,10 @@
     margin: 40px;
 }
 
+.ssr {
+    display: none;
+}
+
 /* override Ant Design with the following syntax: .yourClass.antdClass */
 
 .error.ant-alert {

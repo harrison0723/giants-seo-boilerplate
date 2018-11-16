@@ -16,30 +16,22 @@ export class Page extends Component {
         const pageId = match.params.pageId
         const requestedPage = requested[`pages/${pageId}`]
 
-        return (
+        if (requestedPage && isLoaded(page)) return (
             <div>
                 <Helmet>
-                    {page && <title>{page.title}</title>}
-                    {/* <meta name="description" content={page.content} /> */}
+                    <title>{page.title}</title>
+                    <meta name="description" content={page.content} />
                 </Helmet>
-                {requestedPage ?
-                    <div>
-                        {isLoaded(page) ?
-                            <div className="page">
-                                <h1>{page.title}</h1>
-                                <p>{page.content}</p>
-                                <ContentForm update={(data) => update(data, pageId)} />
-                                <RemoveButton remove={() => remove(pageId)} />
-                            </div>
-                            :
-                            <NotFound />
-                        }
-                    </div>
-                    :
-                    <Spinner size="big" />
-                }
+                <div className="ssr page">
+                    <h1>{page.title}</h1>
+                    <p>{page.content}</p>
+                    <ContentForm update={(data) => update(data, pageId)} />
+                    <RemoveButton remove={() => remove(pageId)} />
+                </div>
             </div>
         )
+        else if (requestedPage && !isLoaded(page)) return <NotFound />
+        else return <Spinner size="big" />
     }
 }
 
@@ -57,8 +49,8 @@ const query = props => [{
 }]
 
 const frontload = async props => {
-    await props.firestore.get({ 
-        collection: 'pages', 
+    await props.firestore.get({
+        collection: 'pages',
         doc: props.match.params.pageId,
         storeAs: 'page'
     })

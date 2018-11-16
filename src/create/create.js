@@ -10,7 +10,7 @@ export class Create extends Component {
         const authenticated = auth.isLoaded && !auth.isEmpty
 
         return (
-            <div className="create">
+            <div className="ssr create">
                 <h1>Create Page</h1>
                 <TitleForm create={create} authenticated={authenticated} />
             </div>
