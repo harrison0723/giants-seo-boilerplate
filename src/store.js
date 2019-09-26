@@ -8,7 +8,7 @@ import firebaseConfig from './firebase'
 import thunk from 'redux-thunk'
 import rootReducer from './reducer'
 
-export const isServer = !(
+const isServer = !(
     typeof window !== 'undefined' &&
     window.document &&
     window.document.createElement
