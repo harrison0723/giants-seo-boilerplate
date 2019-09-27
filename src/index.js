@@ -1,21 +1,33 @@
 import React from 'react'
 import { render, hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
+import { createFirestoreInstance } from 'redux-firestore'
 import Loadable from 'react-loadable'
 import { Frontload } from 'react-frontload'
 import { ConnectedRouter } from 'connected-react-router'
+import firebase from './firebase'
 import createStore from './store'
 import App from './app'
 
 const { store, history } = createStore()
 
+const reactReduxFirebaseProps = { 
+    firebase, 
+    config: { enableLogging: true  },
+    dispatch: store.dispatch,
+    createFirestoreInstance 
+}
+
 const Application = (
     <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <Frontload noServerRender={true}>
-                <App />
-            </Frontload>
-        </ConnectedRouter>
+        <ReactReduxFirebaseProvider {...reactReduxFirebaseProps}>
+            <ConnectedRouter history={history}>
+                <Frontload noServerRender={true}>
+                    <App />
+                </Frontload>
+            </ConnectedRouter>
+        </ReactReduxFirebaseProvider>
     </Provider>
 )
 
@@ -32,17 +44,17 @@ if (root.hasChildNodes() === true) {
 
             const NextApplication = (
                 <Provider store={store}>
-                    <ConnectedRouter history={history}>
-                        <Frontload noServerRender={true}>
-                            <NextApp />
-                        </Frontload>
-                    </ConnectedRouter>
+                    <ReactReduxFirebaseProvider {...reactReduxFirebaseProps}>
+                        <ConnectedRouter history={history}>
+                            <Frontload noServerRender={true}>
+                                <NextApp />
+                            </Frontload>
+                        </ConnectedRouter>
+                    </ReactReduxFirebaseProvider>
                 </Provider>
             )
             render(NextApplication, root)
         })
-    }
-    store.firebaseAuthIsReady.then(() => {
-        render(Application, root)
-    })
+    } 
+    render(Application, root)
 }

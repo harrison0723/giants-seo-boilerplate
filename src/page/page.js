@@ -1,8 +1,9 @@
 import './page.css'
 import React, { Component } from 'react'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { frontloadConnect } from 'react-frontload'
-import { firestoreConnect, isLoaded } from 'react-redux-firebase'
+import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import Helmet from 'react-helmet'
 import { update, remove } from './tools/actions'
 import ContentForm from './components/content'
@@ -10,13 +11,12 @@ import RemoveButton from './components/remove'
 import NotFound from '../common/components/404'
 import Spinner from '../common/components/spinner'
 
-export class Page extends Component {
+class Page extends Component {
     render() {
-        const { page, requested, match, update, remove } = this.props
+        const { page, match, update, remove } = this.props
         const pageId = match.params.pageId
-        const requestedPage = requested[`pages/${pageId}`]
 
-        if (requestedPage && isLoaded(page)) return (
+        if (isLoaded(page) && page) return (
             <div>
                 <Helmet>
                     <title>{page.title}</title>
@@ -30,14 +30,13 @@ export class Page extends Component {
                 </div>
             </div>
         )
-        else if (requestedPage && !isLoaded(page)) return <NotFound />
+        else if (isLoaded(page) && isEmpty(page)) return <NotFound />
         else return <Spinner size="big" />
     }
 }
 
 const mapState = state => ({
-    page: state.firestore.data.page,
-    requested: state.firestore.status.requested
+    page: state.firestore.data.page
 })
 
 const actions = { update, remove }
@@ -58,4 +57,10 @@ const frontload = async props => {
 
 const options = { onMount: true, onUpdate: false }
 
-export default connect(mapState, actions)(firestoreConnect(query)(frontloadConnect(frontload, options)(Page)))
+const composed = compose(
+    connect(mapState, actions), 
+    firestoreConnect(query), 
+    frontloadConnect(frontload, options)
+)
+
+export default composed(Page)

@@ -8,7 +8,10 @@ import { renderToString } from 'react-dom/server'
 import Helmet from 'react-helmet'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router'
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
+import { createFirestoreInstance } from 'redux-firestore'
 import { Frontload, frontloadServerRender } from 'react-frontload'
+import firebase from '../src/firebase'
 import Loadable from 'react-loadable'
 
 // Our store, entrypoint, and manifest
@@ -81,15 +84,24 @@ export default (req, res) => {
                 data for that page. We take all that information and compute the appropriate state to send to the user. This is
                 then loaded into the correct components and sent as a Promise to be handled below.
             */
+            const reactReduxFirebaseProps = {
+                firebase,
+                config: { enableLogging: true },
+                dispatch: store.dispatch,
+                createFirestoreInstance
+            }
+
             frontloadServerRender(() =>
                 renderToString(
                     <Loadable.Capture report={m => modules.push(m)}>
                         <Provider store={store}>
-                            <StaticRouter location={req.url} context={context}>
-                                <Frontload isServer={true}>
-                                    <App />
-                                </Frontload>
-                            </StaticRouter>
+                            <ReactReduxFirebaseProvider {...reactReduxFirebaseProps}>
+                                <StaticRouter location={req.url} context={context}>
+                                    <Frontload isServer={true}>
+                                        <App />
+                                    </Frontload>
+                                </StaticRouter>
+                            </ReactReduxFirebaseProvider>
                         </Provider>
                     </Loadable.Capture>
                 )
@@ -121,6 +133,8 @@ export default (req, res) => {
                     // NOTE: Disable if you desire
                     // Let's output the title, just to see SSR is working as intended
                     console.log('THE TITLE', helmet.title.toString())
+
+                    // console.log('store:', store)
 
                     // Pass all this nonsense into our HTML formatting function above
                     const html = injectHTML(htmlData, {

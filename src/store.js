@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware } from 'redux'
-import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory, createMemoryHistory } from 'history'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
+import { getFirebase } from 'react-redux-firebase'
 import { reduxFirestore, getFirestore } from 'redux-firestore'
-import firebaseConfig from './firebase'
+import firebase from './firebase'
 import thunk from 'redux-thunk'
 import rootReducer from './reducer'
 
@@ -13,13 +13,6 @@ const isServer = !(
     window.document &&
     window.document.createElement
 )
-
-const reactReduxFirebaseConfig = {
-    userProfile: 'users',
-    attachAuthIsReady: true,
-    useFirestoreForProfile: true,
-    updateProfileOnLogin: false
-}
 
 export default (url = '/') => {
     const history = isServer
@@ -31,17 +24,13 @@ export default (url = '/') => {
 
     const storeEnhancers = [middlewareEnhaner]
 
-    const composedEnhancers = composeWithDevTools(
-        ...storeEnhancers,
-        reactReduxFirebase(firebaseConfig, reactReduxFirebaseConfig),
-        reduxFirestore(firebaseConfig)
-    )
+    const composedEnhancers = composeWithDevTools(...storeEnhancers, reduxFirestore(firebase))
 
     const initialState = !isServer ? window.__PRELOADED_STATE__ : {}
     if (!isServer) { delete window.__PRELOADED_STATE__ }
 
     const store = createStore(
-        connectRouter(history)(rootReducer),
+        rootReducer(history),
         initialState,
         composedEnhancers
     )
