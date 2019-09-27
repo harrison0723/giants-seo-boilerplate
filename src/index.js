@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
-import Loadable from 'react-loadable';
+import Loadable from 'react-loadable'
 import { Frontload } from 'react-frontload'
 import { ConnectedRouter } from 'connected-react-router'
 import createStore from './store'

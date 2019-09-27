@@ -1,36 +1,47 @@
-import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { Form, Input, Button, Alert } from 'antd'
+import React from 'react'
+import { useTextInput } from '../tools/hooks'
+import { Input, Button, Alert } from 'antd'
 
-class SignUpForm extends Component {
-    render() {
-        const { signup, error, handleSubmit, submitting } = this.props
-        
-        return (
-            <Form onSubmit={handleSubmit(signup)}>
-                {error && <Alert className="error" type="warning" message={error} showIcon />}
-                <Field
-                    name="name"
-                    type="name"
-                    component={Input}
-                    placeholder="Name"
-                />
-                <Field
-                    name="email"
-                    type="email"
-                    component={Input}
-                    placeholder="Email"
-                />
-                <Field
-                    name="password"
-                    type="password"
-                    component={Input}
-                    placeholder="Password"
-                />
-                <Button className="form-button" type="primary" loading={submitting} htmlType="submit">Sign Up</Button>
-            </Form>
-        )
-    }
+export default function SignupForm({ signup, loading, error }) {
+    
+    const name = useTextInput('')
+    const email = useTextInput('')
+    const password = useTextInput('')
+
+    const submit = () => signup({ 
+        name: name.value, 
+        email: email.value, 
+        password: password.value 
+    })
+
+    return (
+        <div>
+            {error && <Alert className="error" type="warning" message={error} />}
+            <Input
+                {...name}
+                name="name"
+                type="name"
+                placeholder="Name"
+            />
+            <Input
+                {...email}
+                name="email"
+                type="email"
+                placeholder="Email"
+            />
+            <Input
+                {...password}
+                name="password"
+                type="password"
+                placeholder="Password"
+            />
+            <Button 
+                onClick={() => submit()}
+                loading={loading}
+                className="form-button" 
+                type="primary">
+                Sign Up
+            </Button>
+        </div>
+    )
 }
-
-export default reduxForm({ form: 'signUpForm' })(SignUpForm)

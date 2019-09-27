@@ -1,15 +1,18 @@
-.auth .ant-tabs {
+.auth {
     width: 400px;
 }
 
 .auth .ant-tabs-nav {
+    width: 100%;
+}
+
+.auth .ant-tabs-nav > div {
     display: flex;
+    width: 100%;
 }
 
 .auth .ant-tabs-nav .ant-tabs-tab {
-    flex-grow: 1;
-    margin-right: 0px;
-    width: 100%;
+    flex: 1;
     text-align: center;
 }
 

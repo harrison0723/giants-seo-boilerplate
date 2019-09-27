@@ -8,32 +8,18 @@ import { Card, Tabs } from 'antd'
 const TabPane = Tabs.TabPane
 
 export class Auth extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            activeTabKey: "login",
-        }
-        this.handleTabChange = this.handleTabChange.bind(this)
-    }
-
-    handleTabChange(activeTabKey) {
-        this.setState({ activeTabKey })
-    }
-
     render() {
-        const { login, signup } = this.props
-
         return (
             <div className="auth">
-                <Tabs cldefaultActiveKey="login" onChange={this.handleTabChange}>
+                <Tabs>
                     <TabPane tab="Login" key="login">
                         <Card bordered={false}>
-                            <LoginForm login={login} />
+                            <LoginForm {...this.props} />
                         </Card>
                     </TabPane>
                     <TabPane tab="Sign Up" key="signup">
                         <Card bordered={false}>
-                            <SignUpForm signup={signup} />
+                            <SignUpForm {...this.props} />
                         </Card>
                     </TabPane>
                 </Tabs>
@@ -42,8 +28,11 @@ export class Auth extends Component {
     }
 }
 
-const actions = {
-    login, signup
-}
+const mapState = state => ({
+    loading: state.auth.loading,
+    error: state.auth.error
+})
 
-export default connect(null, actions)(Auth)
+const actions = { login, signup }
+
+export default connect(mapState, actions)(Auth)
