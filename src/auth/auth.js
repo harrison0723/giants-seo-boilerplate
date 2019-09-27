@@ -1,7 +1,7 @@
 import './auth.css'
 import React, { Component } from "react"
 import { connect } from 'react-redux'
-import { login, signup } from './actions'
+import { login, signup } from './tools/actions'
 import LoginForm from './components/login'
 import SignUpForm from './components/signup'
 import { Card, Tabs } from 'antd'

@@ -1,7 +1,7 @@
 import './create.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { create } from './actions'
+import { create } from './tools/actions'
 import TitleForm from './components/title'
 
 export class Create extends Component {
@@ -22,8 +22,6 @@ const mapState = state => ({
     auth: state.firebase.auth,
 })
 
-const actions = {
-    create
-}
+const actions = { create }
 
 export default connect(mapState, actions)(Create)

@@ -1,7 +1,7 @@
 import { push } from 'connected-react-router'
 import { actionTypes } from 'redux-firestore'
-import { loadUser, loadedUser, authError } from './tools/reducer'
-import { SystemError } from '../common/tools/error'
+import { loadUser, loadedUser, authError } from './reducer'
+import { SystemError } from '../../common/tools/error'
 
 export const login = (creds) => {
     return async (dispatch, getState, { getFirebase }) => {

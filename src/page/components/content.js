@@ -1,26 +1,29 @@
-import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { Form, Input, Button, Alert } from 'antd'
+import React from 'react'
+import { useTextInput } from '../../common/tools/hooks'
+import { Input, Button } from 'antd'
+const TextArea = Input.TextArea
 
-class ContentForm extends Component {
-    render() {
-        const { update, error, handleSubmit, submitting, pristine } = this.props
+export default function ContentForm({ update, loading }) {
 
-        return (
-            <Form onSubmit={handleSubmit(update)}>
-                {error && <Alert className="error" type="warning" message={error} />}
-                <Field
-                    name="content"
-                    type="text"
-                    component={Input}
-                    placeholder="Content"
-                    autoComplete="off"
-                    autosize={{ minRows: 4 }}
-                />
-                <Button className="form-button" type="primary" disabled={pristine} loading={submitting} htmlType="submit">Update</Button>
-            </Form>
-        )
-    }
+    const content = useTextInput('')
+
+    const submit = () => update({ content: content.value })
+
+    return (
+        <div>
+            <TextArea
+                {...content}
+                type="text"
+                placeholder="Content"
+                autosize={{ minRows: 4 }}
+            />
+            <Button
+                onClick={() => submit()} 
+                loading={loading} 
+                className="form-button"
+                type="primary">
+                Update
+            </Button>
+        </div>
+    )
 }
-
-export default reduxForm({ form: 'contentForm' })(ContentForm)

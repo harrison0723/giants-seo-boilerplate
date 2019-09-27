@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTextInput } from '../tools/hooks'
+import { useTextInput } from '../../common/tools/hooks'
 import { Input, Button, Alert } from 'antd'
 
 export default function SignupForm({ signup, loading, error }) {
@@ -19,19 +19,16 @@ export default function SignupForm({ signup, loading, error }) {
             {error && <Alert className="error" type="warning" message={error} />}
             <Input
                 {...name}
-                name="name"
                 type="name"
                 placeholder="Name"
             />
             <Input
                 {...email}
-                name="email"
                 type="email"
                 placeholder="Email"
             />
             <Input
                 {...password}
-                name="password"
                 type="password"
                 placeholder="Password"
             />
