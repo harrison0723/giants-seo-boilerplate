@@ -14,7 +14,7 @@
 
 ## Features
 1. **No server code**: Giants Universal uses Google’s [Cloud Firestore](https://firebase.google.com/docs/firestore/) for backend.
-2. **No redux code**: Giants Universal integrates with [redux-firestore](https://github.com/prescottprue/redux-firestore) and [redux-form](https://github.com/erikras/redux-form).
+2. **No redux code**: Giants Universal integrates with [redux-firestore](https://github.com/prescottprue/redux-firestore).
 3. **No build config**: Giants Universal is based on Facebook’s [create-react-app](https://github.com/facebook/create-react-app).
 4. **No grunt work**: Giants Universal has auth, loading, error state all covered.
 5. **Minimum UI code**: Giants Universal uses Alibaba’s [Ant Design for React](https://ant.design/docs/react/introduce).
@@ -56,8 +56,6 @@ yarn test
 1. Always give your container component a className
 2. Properly scope your styles with `.containerClassName .yourClassName`
 3. Override Ant Design components with `.yourClassName.antdClassName`
-### Forms
-Use the `render()` function in `/common/tools` to pass Ant Design fields into `redux-form` 
 ### Architecture
 Giants boilerplate sorts files by feature rather than by type. Every new feature employs a folder in `/src` with a local architecture as follows:
 ```
