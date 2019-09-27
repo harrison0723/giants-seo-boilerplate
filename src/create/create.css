@@ -4,3 +4,7 @@
     align-items: center;
     padding: 30px;
 }
+
+.create input {
+    margin: 20px 0;
+}

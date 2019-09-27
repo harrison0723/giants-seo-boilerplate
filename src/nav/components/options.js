@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdown, Icon, Menu } from 'antd'
+import { Dropdown, Menu } from 'antd'
 
 const Options = (props) => {
     return (
@@ -18,7 +18,7 @@ const Options = (props) => {
                     </Menu.Item>
                 </Menu>}>
                 <a href="true" className="ant-dropdown-link">
-                    <span>{props.email} </span><Icon type="down" />
+                    <span>{props.email} </span>
                 </a>
             </Dropdown>
         </div>

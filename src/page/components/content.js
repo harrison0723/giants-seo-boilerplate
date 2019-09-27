@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { render } from '../../common/tools/form'
 import { Form, Input, Button, Alert } from 'antd'
-const InputField = render(Input.TextArea)
 
 class ContentForm extends Component {
     render() {
@@ -10,11 +8,11 @@ class ContentForm extends Component {
 
         return (
             <Form onSubmit={handleSubmit(update)}>
-                {error && <Alert className="error" type="warning" message={error} showIcon />}
+                {error && <Alert className="error" type="warning" message={error} />}
                 <Field
                     name="content"
                     type="text"
-                    component={InputField}
+                    component={Input}
                     placeholder="Content"
                     autoComplete="off"
                     autosize={{ minRows: 4 }}

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { render } from '../../common/tools/form'
-import { Form, Icon, Input, Button, Alert } from 'antd'
-const InputField = render(Input)
+import { Form, Input, Button, Alert } from 'antd'
 
 class LoginForm extends Component {
     render() {
@@ -14,15 +12,13 @@ class LoginForm extends Component {
                 <Field
                     name="email"
                     type="email"
-                    component={InputField}
-                    prefix={<Icon type="mail" />}
+                    component={Input}
                     placeholder="Email"
                 />
                 <Field
                     name="password"
                     type="password"
-                    component={InputField}
-                    prefix={<Icon type="lock" />}
+                    component={Input}
                     placeholder="Password"
                 />
                 <Button className="form-button" type="primary" loading={submitting} htmlType="submit">Login</Button>

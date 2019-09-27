@@ -5,7 +5,6 @@ import express from 'express'
 import morgan from 'morgan'
 import path from 'path'
 import Loadable from 'react-loadable'
-import cookieParser from 'cookie-parser'
 
 // Our loader - this basically acts as the entry point for each page load
 import loader from './loader'
@@ -14,12 +13,11 @@ import loader from './loader'
 const app = express()
 const PORT = process.env.PORT || 3000
 
-// Compress, parse, log, and raid the cookie jar
+// Compress, parse, log
 app.use(compression())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan('dev'))
-app.use(cookieParser())
 
 // Set up homepage, static assets, and capture everything else
 app.use(express.Router().get('/', loader))
