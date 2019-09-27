@@ -19,7 +19,7 @@ export default function TitleForm({ authenticated, create, loading, error }) {
             />
             <Button
                 onClick={() => submit()}
-                disabled={!authenticated}
+                disabled={!authenticated || !title.value}
                 loading={loading}
                 className="form-button"
                 type="primary">
