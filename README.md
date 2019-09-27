@@ -61,7 +61,10 @@ Giants boilerplate sorts files by feature rather than by type. Every new feature
 ```
 /feature
 |--/components
-|--actions.js
+|----/stateless
+|--/tools
+|----/reducer
+|----/actions
 |--feature.css
 |--feature.js
 |--feature.spec.js
