@@ -79,8 +79,5 @@ yarn deploy
 ## Credits
 _The Moai icon was created by Mr. Bozo from thenounproject.com._
 
-## Mobile
+## Companion
 Complement your public web app with mobile apps using [Giants Mobile Boilerplate](https://github.com/harrison0723/giants-mobile-boilerplate).
-
-## Alternative
-If you don't need SSR or SEO, consider using the simpler [Giants Boilerplate](https://github.com/harrison0723/giants-boilerplate).
