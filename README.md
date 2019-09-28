@@ -65,7 +65,7 @@ Giants boilerplate sorts files by feature rather than by type. Every new feature
 |--feature.js
 |--feature.spec.js
 ```
-_Note: the `/components` folder stores all presentational components for the feature._
+_Note: the `/modules` folder stores all presentational components for the feature._
 ## Deploy
 Remember to build
 ```
