@@ -9,6 +9,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import firebase from './firebase'
 import createStore from './store'
 import App from './app'
+import * as serviceWorker from './serviceWorker'
 
 const { store, history } = createStore()
 
@@ -58,3 +59,5 @@ if (root.hasChildNodes() === true) {
     } 
     render(Application, root)
 }
+
+serviceWorker.register()

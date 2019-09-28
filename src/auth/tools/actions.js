@@ -10,6 +10,10 @@ export const login = (creds) => {
 
             await getFirebase()
                 .auth()
+                .setPersistence('local')
+
+            await getFirebase()
+                .auth()
                 .signInWithEmailAndPassword(creds.email, creds.password)
             
             dispatch(push('/create'))

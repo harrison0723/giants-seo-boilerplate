@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import { isServer } from './common/tools/check'
 
 const firebaseConfig = {
     apiKey: "AIzaSyD_y4-6H68ICgslbvf-NVQpJRe5Lo2JFxQ",
@@ -12,5 +13,7 @@ const firebaseConfig = {
 }
 
 firebase.initializeApp(firebaseConfig)
+
+if (!isServer) firebase.firestore().enablePersistence()
 
 export default firebase

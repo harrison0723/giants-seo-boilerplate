@@ -7,12 +7,7 @@ import { reduxFirestore, getFirestore } from 'redux-firestore'
 import firebase from './firebase'
 import thunk from 'redux-thunk'
 import rootReducer from './reducer'
-
-const isServer = !(
-    typeof window !== 'undefined' &&
-    window.document &&
-    window.document.createElement
-)
+import { isServer } from './common/tools/check'
 
 export default (url = '/') => {
     const history = isServer
