@@ -2,20 +2,25 @@ import React from 'react'
 import { useTextInput } from '../../common/tools/input'
 import { Input, Button, Alert } from 'antd'
 
-export default function SignupForm({ signup, loading, error }) {
+export default function SignupForm(props) {
     
+    const { signup, loading, error } = props
+
     const name = useTextInput('')
     const email = useTextInput('')
     const password = useTextInput('')
 
-    const submit = () => signup({ 
-        name: name.value, 
-        email: email.value, 
-        password: password.value 
-    })
+    const submit = (e) => {
+        e.preventDefault()
+        signup({ 
+            name: name.value, 
+            email: email.value, 
+            password: password.value 
+        })
+    }
 
     return (
-        <div>
+        <form onSubmit={submit}>
             {error && <Alert className="error" type="warning" message={error} />}
             <Input
                 {...name}
@@ -33,12 +38,12 @@ export default function SignupForm({ signup, loading, error }) {
                 placeholder="Password"
             />
             <Button 
-                onClick={() => submit()}
                 loading={loading}
+                htmlType="submit"
                 className="form-button" 
                 type="primary">
                 Sign Up
             </Button>
-        </div>
+        </form>
     )
 }
