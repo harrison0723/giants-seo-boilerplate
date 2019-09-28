@@ -1,9 +1,11 @@
 import React from 'react'
 import { useTextInput } from '../../common/tools/input'
 import { Input, Button } from 'antd'
-const TextArea = Input.TextArea
+import styles from './content.module.css'
 
-export default function ContentForm({ update, loading }) {
+export default function ContentForm(props) {
+
+    const { update, loading } = props
 
     const content = useTextInput('')
 
@@ -11,11 +13,12 @@ export default function ContentForm({ update, loading }) {
 
     return (
         <div>
-            <TextArea
+            <Input.TextArea
                 {...content}
+                className={styles.textarea}
+                autosize={{ minRows: 4 }}
                 type="text"
                 placeholder="Content"
-                autosize={{ minRows: 4 }}
             />
             <Button
                 onClick={() => submit()} 

@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { firestoreConnect, isLoaded } from 'react-redux-firebase'
 import { Link, withRouter } from 'react-router-dom'
 import { signout } from '../auth/tools/actions'
-import Logo from './components/logo'
-import Options from './components/options'
+import Logo from './modules/logo'
+import Options from './modules/options'
 import { Layout, Menu } from 'antd'
 const { Sider } = Layout
 
@@ -22,13 +22,11 @@ export class Nav extends Component {
                     <Menu theme="light" mode="inline" selectedKeys={[location.pathname]}>
                         <Menu.Item key="/">
                             <Link to='/'>
-                                {/* <Icon type="home" /> */}
                                 <span className="nav-text">Home</span>
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="/create">
                             <Link to='/create'>
-                                {/* <Icon type="plus-circle-o" /> */}
                                 <span className="nav-text">Create</span>
                             </Link>
                         </Menu.Item>
@@ -36,7 +34,6 @@ export class Nav extends Component {
                             return (
                                 <Menu.Item key={'/pages/' + page.id}>
                                     <Link to={'/pages/' + page.id}>
-                                        {/* <Icon type="file-text" /> */}
                                         <span className="nav-text">{page.title}</span>
                                     </Link>
                                 </Menu.Item>
@@ -54,9 +51,7 @@ const mapState = state => ({
     pages: state.firestore.ordered.pages
 })
 
-const actions = {
-    signout
-}
+const actions = { signout }
 
 const query = props => {
     if (props.auth.isLoaded && !props.auth.isEmpty) return [{

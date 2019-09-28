@@ -2,8 +2,8 @@ import './auth.css'
 import React, { Component } from "react"
 import { connect } from 'react-redux'
 import { login, signup } from './tools/actions'
-import LoginForm from './components/login'
-import SignUpForm from './components/signup'
+import LoginForm from './modules/login'
+import SignUpForm from './modules/signup'
 import { Card, Tabs } from 'antd'
 const TabPane = Tabs.TabPane
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Modal, Button } from 'antd'
-const confirm = Modal.confirm
+import styles from './remove.module.css'
 
-function showConfirm(remove) {
-    confirm({
+const confirm = (remove) => {
+    Modal.confirm({
         title: 'Do you want to delete this page?',
         content: 'This action cannot be undone.',
         okText: 'Delete',
@@ -13,16 +13,14 @@ function showConfirm(remove) {
     })
 }
 
-const RemoveButton = ({ remove }) => {
+export default function RemoveButton ({ remove }) {
     return (
         <Button 
-            onClick={() => showConfirm(remove)} 
-            className="remove-button" 
+            onClick={() => confirm(remove)} 
+            className={styles.removeButton}
             type="danger" 
             block>
             Delete
         </Button>
     )
 }
-
-export default RemoveButton
