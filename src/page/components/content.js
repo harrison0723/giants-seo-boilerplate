@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTextInput } from '../../common/tools/hooks'
+import { useTextInput } from '../../common/tools/input'
 import { Input, Button } from 'antd'
 const TextArea = Input.TextArea
 

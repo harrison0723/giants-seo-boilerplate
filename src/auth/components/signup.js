@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTextInput } from '../../common/tools/hooks'
+import { useTextInput } from '../../common/tools/input'
 import { Input, Button, Alert } from 'antd'
 
 export default function SignupForm({ signup, loading, error }) {
