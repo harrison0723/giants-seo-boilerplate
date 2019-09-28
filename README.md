@@ -20,7 +20,7 @@
 5. **Scalable**: Giants Universal implements code-splitting by [react-loadable](https://github.com/jamiebuilds/react-loadable).
 6. **Maintainable**: Giants Universal has a shallow, component-like file structure.
 7. **SSR + SEO**: Giants Universal is server-side rendered with [react-frontload](https://medium.com/@cereallarceny/server-side-rendering-in-create-react-app-with-all-the-goodies-without-ejecting-4c889d7db25e).
-8. **No grunt work**: Giants Universal has auth, loading, error state all covered.
+8. **Grunt-free**: Giants Universal has auth, loading, error state all covered.
 
 ## Shut up, show me the app
 Clone the repository
@@ -52,16 +52,13 @@ yarn test
 1. Go to your [Firebase console](https://console.firebase.google.com/) and create an app
 2. Enable authentication (Email) and Firestore database
 3. Replace Firebase config in `src/firebase.js`
-### Styles
-1. Always give your container component a className
-2. Properly scope your styles with `.containerClassName .yourClassName`
-3. Override Ant Design components with `.yourClassName.antdClassName`
 ### Architecture
 Giants boilerplate sorts files by feature rather than by type. Every new feature employs a folder in `/src` with a local architecture as follows:
 ```
 /feature
-|--/components
-|----/stateless
+|--/modules
+|----/component.js
+|----/component.module.css
 |--/tools
 |----/actions
 |--feature.css
@@ -86,4 +83,4 @@ _The Moai icon was created by Mr. Bozo from thenounproject.com._
 Complement your public web app with mobile apps using [Giants Mobile Boilerplate](https://github.com/harrison0723/giants-mobile-boilerplate).
 
 ## Alternative
-If you don't need SEO support, consider using the simpler [Giants Boilerplate](https://github.com/harrison0723/giants-boilerplate).
+If you don't need SSR or SEO, consider using the simpler [Giants Boilerplate](https://github.com/harrison0723/giants-boilerplate).
