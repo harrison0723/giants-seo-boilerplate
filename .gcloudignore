@@ -3,5 +3,3 @@
 .gitignore
 
 node_modules/
-
-build/static/**/*.map.js
