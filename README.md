@@ -14,7 +14,7 @@
 
 ## Features
 1. **Serverless**: Giants Universal uses Google’s [Cloud Firestore](https://firebase.google.com/docs/firestore/) for backend.
-2. **Statement management**: Giants Universal integrates with [redux-firestore](https://github.com/prescottprue/redux-firestore).
+2. **State management**: Giants Universal integrates with [redux-firestore](https://github.com/prescottprue/redux-firestore).
 3. **Zero-config**: Giants Universal is based on Facebook’s [create-react-app](https://github.com/facebook/create-react-app).
 4. **Fast UI development**: Giants Universal uses Alibaba’s [Ant Design for React](https://ant.design/docs/react/introduce).
 5. **Scalable**: Giants Universal implements code-splitting by [react-loadable](https://github.com/jamiebuilds/react-loadable).
